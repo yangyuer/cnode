@@ -36,9 +36,9 @@ app.use(session({
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
 app.use('/users', users);
 app.use('/api', apis);
+app.use('/', index);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -55,7 +55,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.render('error.njk', err.msg);
 });
 
 module.exports = app;

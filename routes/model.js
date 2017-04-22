@@ -78,6 +78,7 @@ module.exports = {
     })
   },
   validateAccesstoken: function(accesstoken) {
+    console.log('validateAccesstoken', accesstoken)
     return new Promise(function(resolve, reject) {
       doApi(axios.post(baseUrl + '/accesstoken', {
         data:{

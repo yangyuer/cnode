@@ -93,7 +93,7 @@ npm start
 ```
 
 ### 话题页
-路由：`/:id`，:id代表某个话题的id，比如`/5433d5e4e737cbe96dcef312`
+路由：`/topic/:id`，:id代表某个话题的id，比如`/5433d5e4e737cbe96dcef312`
 
 渲染数据：
 ``` json

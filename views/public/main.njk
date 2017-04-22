@@ -9,6 +9,7 @@
   <body>
     {% include "./header.njk" %}
 
+    <p>this is main.njk</p>
     {% block body %}
     {% endblock %}
 
@@ -19,6 +20,8 @@
   这是用在开发的时候把cnode返回的数据打印在控制台
   在正常使用的时候请删除该代码
   -->
+  <script src='/javascripts/polyfill.js'></script>
+  <script src='/javascripts/common.js'></script>
   <script>
     console.log({{ data | dump | safe }})
   </script>
