@@ -42,22 +42,38 @@ module.exports = {
   },
   collectTopic: function(id, accesstoken) {
     return new Promise(function(resolve, reject) {
-      doApi(axios.post(baseUrl + '/topic_collect/collect', {
-        data: {
-          accesstoken: accesstoken,
-          topic_id: id
+      doApi(axios({
+        url: baseUrl + '/topic_collect/collect',
+        method: 'POST',
+        data: 'accesstoken=' + accesstoken + '&topic_id=' + id,
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
         }
       }), resolve, reject)
+      // doApi(axios.post(baseUrl + '/topic_collect/collect', {
+      //   data: {
+      //     accesstoken: accesstoken,
+      //     topic_id: id
+      //   }
+      // }), resolve, reject)
     })
   },
   decollectTopic: function(id, accesstoken) {
     return new Promise(function(resolve, reject) {
-      doApi(axios.post(baseUrl + '/topic_collect/de_collect', {
-        data: {
-          accesstoken: accesstoken,
-          topic_id: id
+      doApi(axios({
+        url: baseUrl + '/topic_collect/de_collect',
+        method: 'POST',
+        data: 'accesstoken=' + accesstoken + '&topic_id=' + id,
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
         }
       }), resolve, reject)
+      // doApi(axios.post(baseUrl + '/topic_collect/de_collect', {
+      //   data: {
+      //     accesstoken: accesstoken,
+      //     topic_id: id
+      //   }
+      // }), resolve, reject)
     })
   },
   getAllCollectTopics: function(loginname) {
@@ -80,11 +96,19 @@ module.exports = {
   validateAccesstoken: function(accesstoken) {
     console.log('validateAccesstoken', accesstoken)
     return new Promise(function(resolve, reject) {
-      doApi(axios.post(baseUrl + '/accesstoken', {
-        data:{
-          accesstoken: accesstoken
+      doApi(axios({
+        url: baseUrl + '/accesstoken',
+        method: 'POST',
+        data: 'accesstoken=' + accesstoken,
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
         }
       }), resolve, reject)
+      // doApi(axios.post(baseUrl + '/accesstoken', {
+      //   data:{
+      //     accesstoken: accesstoken
+      //   }
+      // }), resolve, reject)
     })
   },
   getUserInfo: function(username) {

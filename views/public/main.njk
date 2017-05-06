@@ -9,7 +9,6 @@
   <body>
     {% include "./header.njk" %}
 
-    <p>this is main.njk</p>
     {% block body %}
     {% endblock %}
 
@@ -23,10 +22,11 @@
   <script src='/javascripts/polyfill.js'></script>
   <script src='/javascripts/common.js'></script>
   <script>
-    console.log({{ data | dump | safe }})
+    console.log('data:', {{ data | dump | safe }})
+    console.log('user:', {{ user | dump | safe }})
   </script>
 
-  {% block scripts %}
+  {% block script %}
   {% endblock %}
 
 </html>

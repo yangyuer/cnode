@@ -10,15 +10,21 @@ function goToError (res, msg) {
   })
 }
 
+function getData(req, data) {
+  return Object.assign({}, {
+    user: req.session.user || null
+  }, data)
+}
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   console.log('coming home')
   model.getTopicList().then(function(data) {
     if (data.success) {
-      res.render('pages/index.njk', {
+      res.render('pages/index.njk', getData(req, {
         title: '主页',
         data: data.data
-      } )
+      }))
     }
   }).catch(function(err) {
     goToError(res, err.message)
@@ -28,12 +34,14 @@ router.get('/', function(req, res, next) {
 /* Get topic page */
 router.get('/topic/:id', function(req, res, next) {
   console.log('coming topic')
-  model.getTopic(req.params.id).then(function(data) {
+  model.getTopic(req.params.id, {
+    accesstoken: req.session.accesstoken
+  }).then(function(data) {
     if (data.success) {
-      res.render('pages/topic.njk', {
+      res.render('pages/topic.njk', getData(req, {
         title: '话题',
         data: data.data
-      })
+      }))
     }
   }).catch(function(err) {
     goToError(res, err.message)

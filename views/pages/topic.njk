@@ -1,6 +1,59 @@
 {% extends "../public/main.njk" %}
 
+{% block css %}
+<link rel="stylesheet" href="/stylesheets/topic.css">
+{% endblock %}
+
+{% block script %}
+<script src="/javascripts/topic.js"></script>
+{% endblock %}
+
 {% block body %}
-  <h1>{{ title }}</h1>
-  <p>Welcome to {{ title }}</p>
+  <div id="topic" class="container">
+    <div id="topic-body">
+      <div id="topic-header">
+        <div id="topic-title">
+          <span class="tag">{{data | cnode_tag}}</span>
+          <h1 class="title">{{data.title}}</h1>
+          {% if user %}
+          {% if data.is_collect %}
+          <a href="#" class="collector collected" topicId="{{data.id}}">取消收藏</a>
+          {% else %}
+          <a href="#" class="collector" topicId="{{data.id}}">收藏</a>
+          {% endif %}
+          {% endif %}
+        </div>
+        <div id="title-info">
+          <span class="title-info-item">{{data.create_at | last_reply_time}}</span>
+          <span class="title-info-item">作者 {{data.author.loginname}}</span>
+          <span class="title-info-item">浏览次数{{data.visit_count}}</span>
+          <span class="title-info-item">最后一次编辑于：{{data.last_reply_at | last_reply_time}}</span>
+          <span class="title-info-item">来自于：{{data | cnode_tag}}</span>
+        </div>
+      </div>
+      <div id="topic-content">
+        {{data.content | safe}}
+      </div>
+    </div>
+    <div id="topic-replys">
+      <div id="reply-header">
+        <span>{{data.replies.length}}回复</span>
+      </div>
+      {% for reply in data.replies %}
+      <div class="topic-reply">
+        <div class="reply-avatar">
+          <img src="{{reply.author.avatar_url}}" alt="">
+        </div>
+        <div class="reply-header">
+          <span class="reply-name">{{reply.author.loginname}}</span>
+          <span class="reply-floor">{{loop.index}}楼</span>
+          <span class="reply-time">{{reply.create_at | last_reply_time}}</span>
+        </div>
+        <div class="reply-content">
+          {{reply.content | safe}}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
 {% endblock %}
