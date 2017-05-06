@@ -1,57 +1,7 @@
 {% extends "../public/main.njk" %}
 
-{% block css %}
-<link rel="stylesheet" href="/stylesheets/index.css">
-{% endblock %}
-
 {% block body %}
 
-  <div class="container">
-    <div id="tabs">
-      <ul>
-        <li class="tab" tab="all">
-          <a href="#">全部</a>
-        </li>
-        <li class="tab" tab="good">
-          <a href="#">精华</a>
-        </li>
-        <li class="tab" tab="share">
-          <a href="#">分享</a>
-        </li>
-        <li class="tab" tab="ask">
-          <a href="#">问答</a>
-        </li>
-        <li class="tab" tab="job">
-          <a href="#">招聘</a>
-        </li>
-      </ul>
-    </div>
-    <ul id="topics">
-    {% for topic in data %}
-      <li class="topic" tab="{{topic.tab}}">
-        <span class="topic-creator-avator">
-          <img src="{{topic.author.avatar_url}}" alt="">
-        </span>
-        <span class="tag">{{topic | cnode_tag}}</span>
-        <div class="title-and-num">
-          <span class="title">{{topic.title}}</span>
-          <span class="topic-view-number">
-            <span class="replys">{{topic.reply_count}}</span>
-            <span class="divider">/</span>
-            <span class="views">{{topic.visit_count}}</span>
-          </span>
-        </div>
+  <p>This is index.njk</p>
 
-        <span class="last-reply-time">
-          {{topic.last_reply_at | last_reply_time}}
-        </span>
-      </li>
-    {% endfor %}
-    </ul>
-  </div>
-
-{% endblock %}
-
-{% block script %}
-<script src="/javascripts/index.js"></script>
 {% endblock %}
